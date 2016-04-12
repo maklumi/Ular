@@ -15,7 +15,9 @@ public final class GameSettings {
 
     public static final int NUMBER_BOMBS = 5;
 
-    public static final String MY_AD_UNIT_ID = "ca-app-pub-7399279129505858/6591967674";
+    public static final int SNAKE_SPEED = 10;
+
+   // public static final String MY_AD_UNIT_ID = "ca-app-pub-7399279129505858/6591967674";
 
     // flash animation for the app
     public static final int ANIMATION_OPEN_BUTTON_DURATION = 400;

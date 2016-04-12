@@ -11,16 +11,13 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.AdView;
+import android.widget.Toast;
 
 public class MainMenu extends AppCompatActivity {
 
     private RelativeLayout snakeLayout;
     private Animation compileAnim;
-    private AdView adView;
+  //  private AdView adView;
     private ImageView classicBtn;
     private ImageView noWallsBtn;
     private ImageView bombBtn;
@@ -43,122 +40,22 @@ public class MainMenu extends AppCompatActivity {
             getSupportActionBar().hide();
         }
 
-        adView = new AdView(this);
-        adView.setAdSize(AdSize.SMART_BANNER);
-        adView.setAdUnitId(GameSettings.MY_AD_UNIT_ID);
-        snakeLayout.addView(adView);
+//        adView = new AdView(this);
+//        adView.setAdSize(AdSize.SMART_BANNER);
+//        adView.setAdUnitId(GameSettings.MY_AD_UNIT_ID);
+//        snakeLayout.addView(adView);
+//
+//        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
+////        AdRequest adRequest = new AdRequest.Builder().build();
+//        adView.loadAd(adRequest);
 
-        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
-//        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
-
+        initTitle();
         initClassic();
         initNoWalls();
-        initBomb();
-        initTitle();
         initSettings();
+        initBomb();
     }
 
-
-    private void initClassic() {
-        classicBtn = (ImageView) findViewById(R.id.classic);
-        compileAnim = AnimationUtils.loadAnimation(MainMenu.this, R.anim.anim_for_classic_button);
-        compileAnim.setDuration(GameSettings.ANIMATION_OPEN_BUTTON_DURATION);
-        compileAnim.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                classicBtn.setImageResource(R.mipmap.classic);
-                classicBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intentClassic = new Intent(MainMenu.this, ClassicSnake.class);
-                        intentClassic.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        startActivity(intentClassic);
-                    }
-                });
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
-
-        classicBtn.startAnimation(compileAnim);
-
-    }
-
-    private void initNoWalls() {
-        noWallsBtn = (ImageView) findViewById(R.id.no_walls);
-        compileAnim = AnimationUtils.loadAnimation(MainMenu.this, R.anim.anim_for_no_button);
-        compileAnim.setDuration(GameSettings.ANIMATION_OPEN_BUTTON_DURATION);
-        compileAnim.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                noWallsBtn.setImageResource(R.mipmap.no_walls);
-                noWallsBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intentNoWalls = new Intent(MainMenu.this, NoWallsSnake.class);
-                        intentNoWalls.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        startActivity(intentNoWalls);
-                    }
-                });
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
-
-        noWallsBtn.startAnimation(compileAnim);
-    }
-
-    private void initBomb() {
-        bombBtn = (ImageView) findViewById(R.id.bomb);
-        compileAnim = AnimationUtils.loadAnimation(MainMenu.this, R.anim.anim_for_bomb_button);
-        compileAnim.setDuration(GameSettings.ANIMATION_OPEN_BUTTON_DURATION);
-        compileAnim.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                bombBtn.setImageResource(R.mipmap.bombsnake);
-                bombBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent bombSnakeIntent = new Intent(MainMenu.this, BombSnake.class);
-                        bombSnakeIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        startActivity(bombSnakeIntent);
-                    }
-                });
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
-
-        bombBtn.startAnimation(compileAnim);
-    }
 
     private void initTitle() {
         titleLeft = (TextView) findViewById(R.id.snake_left);
@@ -233,6 +130,73 @@ public class MainMenu extends AppCompatActivity {
 
     }
 
+    private void initClassic() {
+        classicBtn = (ImageView) findViewById(R.id.classic);
+        compileAnim = AnimationUtils.loadAnimation(MainMenu.this, R.anim.anim_for_classic_button);
+        compileAnim.setDuration(GameSettings.ANIMATION_OPEN_BUTTON_DURATION); //400 ms
+        compileAnim.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                classicBtn.setImageResource(R.mipmap.classic);
+                classicBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intentClassic = new Intent(MainMenu.this, ClassicSnake.class);
+                        intentClassic.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION); //don't carry on current anim to next activity
+                        startActivity(intentClassic);
+                    }
+                });
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+        classicBtn.startAnimation(compileAnim);
+
+    }
+
+    private void initNoWalls() {
+        noWallsBtn = (ImageView) findViewById(R.id.no_walls);
+        compileAnim = AnimationUtils.loadAnimation(MainMenu.this, R.anim.anim_for_no_wall_button);
+        compileAnim.setDuration(GameSettings.ANIMATION_OPEN_BUTTON_DURATION);
+        compileAnim.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                noWallsBtn.setImageResource(R.mipmap.no_walls);
+                noWallsBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intentNoWalls = new Intent(MainMenu.this, NoWallsSnake.class);
+                        intentNoWalls.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        startActivity(intentNoWalls);
+                    }
+                });
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+        noWallsBtn.startAnimation(compileAnim);
+    }
+
     private void initSettings() {
         settingsBtn = (ImageView) findViewById(R.id.settings);
         compileAnim = AnimationUtils.loadAnimation(MainMenu.this, R.anim.anim_for_settings_button);
@@ -286,6 +250,7 @@ public class MainMenu extends AppCompatActivity {
                         titleMiddle.startAnimation(animationTitleMiddle);
                         titleRight.startAnimation(animationTitleRight);
 
+                        // get a Handler to schedule a message/runnable to run at a later time
                         Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             @Override
@@ -294,7 +259,7 @@ public class MainMenu extends AppCompatActivity {
                                 settingsIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                                 startActivity(settingsIntent);
                             }
-                        }, GameSettings.START_NEW_ACTIVITY_DURATION);
+                        }, GameSettings.START_NEW_ACTIVITY_DURATION);// delay of 200 ms
 
                     }
                 });
@@ -308,7 +273,53 @@ public class MainMenu extends AppCompatActivity {
         });
         settingsBtn.setAnimation(compileAnim);
     }
+
+    private void initBomb() {
+        bombBtn = (ImageView) findViewById(R.id.bomb);
+        compileAnim = AnimationUtils.loadAnimation(MainMenu.this, R.anim.anim_for_bomb_button);
+        compileAnim.setDuration(GameSettings.ANIMATION_OPEN_BUTTON_DURATION);
+        compileAnim.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                bombBtn.setImageResource(R.mipmap.bombsnake);
+                bombBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent bombSnakeIntent = new Intent(MainMenu.this, BombSnake.class);
+                        bombSnakeIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        startActivity(bombSnakeIntent);
+                    }
+                });
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+        bombBtn.startAnimation(compileAnim);
+    }
+
+    boolean doubleBackToExitPressedOnce = false;
+
+    long lastPress;
     @Override
     public void onBackPressed() {
+        long currentTime = System.currentTimeMillis();
+        if(currentTime - lastPress > 3000){
+            Toast.makeText(getBaseContext(), "Press back again to exit", Toast.LENGTH_LONG).show();
+            lastPress = currentTime;
+        }else{
+            super.onBackPressed();
+            finish();
+        }
     }
+
 }

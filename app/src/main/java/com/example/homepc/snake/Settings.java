@@ -101,7 +101,7 @@ public class Settings extends AppCompatActivity {
 
     private void initMusicSwitch() {
         musicButton = (ImageView) findViewById(R.id.music);
-        compileAnimation = AnimationUtils.loadAnimation(Settings.this, R.anim.anim_for_no_button);
+        compileAnimation = AnimationUtils.loadAnimation(Settings.this, R.anim.anim_for_no_wall_button);
         compileAnimation.setDuration(GameSettings.ANIMATION_OPEN_BUTTON_DURATION);
         compileAnimation.setAnimationListener(new Animation.AnimationListener() {
             @Override

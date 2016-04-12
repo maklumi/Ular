@@ -85,7 +85,7 @@ public class BombSnake extends AppCompatActivity {
         }
         musicOnOff();
         bombSnakeLayout = (RelativeLayout) findViewById(R.id.bomb_snake_layout);
-        bombSnakeLayout.setBackgroundResource(R.mipmap.background_for_snake);
+        //bombSnakeLayout.setBackgroundResource(R.mipmap.background_for_snake);
         bombSnakeLayout.setPaddingRelative(GameSettings.LAYOUT_PADDING, GameSettings.LAYOUT_PADDING,
                 GameSettings.LAYOUT_PADDING, GameSettings.LAYOUT_PADDING);
         textScore = (TextView) findViewById(R.id.score);
@@ -245,7 +245,7 @@ public class BombSnake extends AppCompatActivity {
         Animation shake = AnimationUtils.loadAnimation(this, R.anim.shake);
         shake.setDuration(GameSettings.SHAKE_DURATION);
         bombSnakeLayout = (RelativeLayout) findViewById(R.id.bomb_snake_layout);
-        bombSnakeLayout.setBackgroundResource(R.mipmap.background_for_snake);
+      //  bombSnakeLayout.setBackgroundResource(R.mipmap.background_for_snake);
         bombSnakeLayout.startAnimation(shake);
     }
 
@@ -265,7 +265,7 @@ public class BombSnake extends AppCompatActivity {
                 public void onAnimationEnd(Animation animation) {
                     Animation fadeOut = AnimationUtils.loadAnimation(BombSnake.this, R.anim.fade_out);
                     bombSnakeLayout = (RelativeLayout) findViewById(R.id.bomb_snake_layout);
-                    bombSnakeLayout.setBackgroundResource(R.mipmap.background_for_snake);
+              //      bombSnakeLayout.setBackgroundResource(R.mipmap.background_for_snake);
                     bombSnakeLayout.startAnimation(fadeOut);
                 }
 

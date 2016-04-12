@@ -82,7 +82,7 @@ public class NoWallsSnake extends AppCompatActivity {
         }
         musicOnOff();
         noWallsSnakeLayout = (RelativeLayout) findViewById(R.id.nowalls_snake_layout);
-        noWallsSnakeLayout.setBackgroundResource(R.mipmap.background_for_snake);
+      //  noWallsSnakeLayout.setBackgroundResource(R.mipmap.background_for_snake);
         noWallsSnakeLayout.setPaddingRelative(GameSettings.LAYOUT_PADDING, GameSettings.LAYOUT_PADDING,
                 GameSettings.LAYOUT_PADDING, GameSettings.LAYOUT_PADDING);
         textScore = (TextView) findViewById(R.id.score);
@@ -242,7 +242,7 @@ public class NoWallsSnake extends AppCompatActivity {
         Animation shake = AnimationUtils.loadAnimation(this, R.anim.shake);
         shake.setDuration(GameSettings.SHAKE_DURATION);
         noWallsSnakeLayout = (RelativeLayout) findViewById(R.id.nowalls_snake_layout);
-        noWallsSnakeLayout.setBackgroundResource(R.mipmap.background_for_snake);
+       // noWallsSnakeLayout.setBackgroundResource(R.mipmap.background_for_snake);
         noWallsSnakeLayout.startAnimation(shake);
     }
 
@@ -262,7 +262,7 @@ public class NoWallsSnake extends AppCompatActivity {
                 public void onAnimationEnd(Animation animation) {
                     Animation fadeOut = AnimationUtils.loadAnimation(NoWallsSnake.this, R.anim.fade_out);
                     noWallsSnakeLayout = (RelativeLayout) findViewById(R.id.nowalls_snake_layout);
-                    noWallsSnakeLayout.setBackgroundResource(R.mipmap.background_for_snake);
+               //     noWallsSnakeLayout.setBackgroundResource(R.mipmap.background_for_snake);
                     noWallsSnakeLayout.startAnimation(fadeOut);
                 }
 
@@ -553,5 +553,6 @@ public class NoWallsSnake extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
+        finish();
     }
 }

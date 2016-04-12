@@ -2,12 +2,10 @@
 
 <translate xmlns:android="http://schemas.android.com/apk/res/android"
 
-    android:fromXDelta="0%" android:toXDelta="-20%" android:fromYDelta="0%"
-
-    android:toYDelta="-20%" android:zAdjustment="bottom"
-
+    android:fromXDelta="0%" android:toXDelta="-20%"
+    android:fromYDelta="0%" android:toYDelta="-20%"
+    android:zAdjustment="bottom"
     android:repeatCount="0"
-
     android:fillAfter="true">
 
 </translate>

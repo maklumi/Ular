@@ -8,7 +8,8 @@
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
-    tools:context="com.timbuchalka.snake.ClassicSnake">
+    android:background="@color/playColorBackgroud"
+    tools:context="com.example.homepc.snake.ClassicSnake">
 
     <TextView
         android:id="@+id/score"

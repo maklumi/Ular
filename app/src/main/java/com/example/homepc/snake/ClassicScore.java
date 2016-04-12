@@ -45,14 +45,14 @@ public class ClassicScore extends AppCompatActivity {
         }
         RelativeLayout classicScoreLayout = (RelativeLayout) findViewById(R.id.classic_score_layout);
 
-        adView = new AdView(this);
-        adView.setAdSize(AdSize.SMART_BANNER);
-        adView.setAdUnitId(GameSettings.MY_AD_UNIT_ID);
-        classicScoreLayout.addView(adView);
-
-        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
+//        adView = new AdView(this);
+//        adView.setAdSize(AdSize.SMART_BANNER);
+//        adView.setAdUnitId(GameSettings.MY_AD_UNIT_ID);
+//        classicScoreLayout.addView(adView);
+//
+//        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
 //        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
+//        adView.loadAd(adRequest);
 
         initTitle();
         initScore();
@@ -94,7 +94,7 @@ public class ClassicScore extends AppCompatActivity {
 
     private void initHighScore() {
         highScoreTextView = (TextView) findViewById(R.id.mode_high_score);
-        animation = AnimationUtils.loadAnimation(this, R.anim.anim_for_no_button);
+        animation = AnimationUtils.loadAnimation(this, R.anim.anim_for_no_wall_button);
         animation.setDuration(GameSettings.ANIMATION_OPEN_BUTTON_DURATION);
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -125,7 +125,8 @@ public class ClassicScore extends AppCompatActivity {
         int lastScore = preferences.getInt(GameSettings.PLAYER_SCORE, 0);
         if(lastScore > highScore) {
             editor.putInt(GameSettings.HIGH_SCORE_CLASSIC, lastScore);
-            editor.commit();
+           // editor.commit();
+            editor.apply();
             highScore = lastScore;
         }
 

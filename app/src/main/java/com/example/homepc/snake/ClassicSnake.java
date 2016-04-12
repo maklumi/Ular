@@ -65,8 +65,10 @@ public class ClassicSnake extends AppCompatActivity {
 
     private TextView textScore;
 
-    private int speedX = 17;
-    private int speedY = 17;
+//    private int speedX = 10; //ori is 17
+//    private int speedY = 10;
+    private int speedX = GameSettings.SNAKE_SPEED;
+    private int speedY = GameSettings.SNAKE_SPEED;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +84,7 @@ public class ClassicSnake extends AppCompatActivity {
         }
         musicOnOff();
         classicSnakeLayout = (RelativeLayout) findViewById(R.id.classic_snake_layout);
-        classicSnakeLayout.setBackgroundResource(R.mipmap.background_for_snake);
+       // classicSnakeLayout.setBackgroundResource(R.mipmap.background_for_snake);
         classicSnakeLayout.setPaddingRelative(GameSettings.LAYOUT_PADDING, GameSettings.LAYOUT_PADDING,
                 GameSettings.LAYOUT_PADDING, GameSettings.LAYOUT_PADDING);
         textScore = (TextView) findViewById(R.id.score);
@@ -242,7 +244,7 @@ public class ClassicSnake extends AppCompatActivity {
         Animation shake = AnimationUtils.loadAnimation(this, R.anim.shake);
         shake.setDuration(GameSettings.SHAKE_DURATION);
         classicSnakeLayout = (RelativeLayout) findViewById(R.id.classic_snake_layout);
-        classicSnakeLayout.setBackgroundResource(R.mipmap.background_for_snake);
+      //  classicSnakeLayout.setBackgroundResource(R.mipmap.background_for_snake);
         classicSnakeLayout.startAnimation(shake);
     }
 
@@ -250,7 +252,7 @@ public class ClassicSnake extends AppCompatActivity {
         if (playerScore % GameSettings.POINTS_ANIMATION == 0) {
             Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
             classicSnakeLayout = (RelativeLayout) findViewById(R.id.classic_snake_layout);
-            classicSnakeLayout.setBackgroundResource(R.mipmap.background_for_snake_change);
+          //  classicSnakeLayout.setBackgroundResource(R.mipmap.background_for_snake_change);
             classicSnakeLayout.startAnimation(fadeIn);
             fadeIn.setAnimationListener(new Animation.AnimationListener() {
                 @Override
@@ -262,7 +264,7 @@ public class ClassicSnake extends AppCompatActivity {
                 public void onAnimationEnd(Animation animation) {
                     Animation fadeOut = AnimationUtils.loadAnimation(ClassicSnake.this, R.anim.fade_out);
                     classicSnakeLayout = (RelativeLayout) findViewById(R.id.classic_snake_layout);
-                    classicSnakeLayout.setBackgroundResource(R.mipmap.background_for_snake);
+                  //  classicSnakeLayout.setBackgroundResource(R.mipmap.background_for_snake);
                     classicSnakeLayout.startAnimation(fadeOut);
                 }
 
@@ -344,6 +346,9 @@ public class ClassicSnake extends AppCompatActivity {
         }
     }
 
+    /**
+     * called when every time window updates
+     */
     private void update() {
         new Thread(new Runnable() {
             @Override
@@ -394,11 +399,11 @@ public class ClassicSnake extends AppCompatActivity {
                                 if (isGoingRight || clickRight) {
                                     for (int i = parts.size() - 1; i >= 0; i--) {
                                         ImageView imageView = parts.get(i);
-                                        if (i > 0) {
+                                        if (i > 0) { // not head
                                             ImageView imageView2 = parts.get(i - 1);
                                             imageView.setX(imageView2.getX());
                                             imageView.setY(imageView2.getY());
-                                        } else {
+                                        } else { // if at tail
                                             imageView.setX(imageView.getX() + speedX);
                                             if (imageView.getX() + imageView.getWidth() >= screenWidth) {
                                                 imageView.setX(screenWidth - imageView.getWidth() / 2);
@@ -465,6 +470,9 @@ public class ClassicSnake extends AppCompatActivity {
         }).start();
     }
 
+    /**
+     * inner class to handle swiping
+     */
     public class SwipeGestureDirector extends GestureDetector.SimpleOnGestureListener {
 
         @Override
@@ -477,7 +485,7 @@ public class ClassicSnake extends AppCompatActivity {
             boolean result = false;
 
             if (!useButtons) {
-                try {
+                try { //get direction of fling
                     float diffX = e2.getX() - e1.getX();
                     float diffY = e2.getY() - e1.getY();
                     if (Math.abs(diffX) > Math.abs(diffY)) {
@@ -553,6 +561,7 @@ public class ClassicSnake extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
+        finish();
     }
 
 }

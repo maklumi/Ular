@@ -8,6 +8,7 @@
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
+    android:background="@color/playColorBackgroud"
     tools:context="com.example.homepc.snake.MainMenu">
 
     <TextView

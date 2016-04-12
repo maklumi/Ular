@@ -78,7 +78,7 @@ public class BombScore extends AppCompatActivity {
 
     private void initHighScore() {
         highScoreTextView = (TextView) findViewById(R.id.mode_high_score);
-        animation = AnimationUtils.loadAnimation(this, R.anim.anim_for_no_button);
+        animation = AnimationUtils.loadAnimation(this, R.anim.anim_for_no_wall_button);
         animation.setDuration(GameSettings.ANIMATION_OPEN_BUTTON_DURATION);
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override
